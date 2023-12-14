@@ -1,0 +1,64 @@
+QUERY 1:  Links from drugs used to treat Alzheimer's disease
+
+PREFIX oregano: <http://erias.fr/oregano/#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema/#>
+SELECT DISTINCT ?compound ?predicate ?object
+
+WHERE {
+  ?disease rdfs:label "pgkb:alzheimer disease".
+  ?compound oregano:is_substance_that_treats ?disease.
+  ?compound ?predicate ?object
+}
+
+QUERY 2:  Links to drugs used to treat Alzheimer's disease
+
+PREFIX oregano: <http://erias.fr/oregano/#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema/#>
+SELECT DISTINCT ?subject ?predicate ?compound
+
+WHERE {
+  ?disease rdfs:label "pgkb:alzheimer disease".
+  ?compound oregano:is_substance_that_treats ?disease.
+  ?subject ?predicate ?compound.
+}
+
+QUERY 3:  Links from genes that cause treat Alzheimer's disease
+PREFIX oregano: <http://erias.fr/oregano/#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema/#>
+SELECT DISTINCT ?gene ?predicate ?object
+
+WHERE {
+  ?disease rdfs:label "pgkb:alzheimer disease".
+  ?gene oregano:causes_condition ?disease.
+  ?gene ?predicate ?object.
+}
+
+
+
+QUERY 4: Links to genes that cause treat Alzheimer's disease
+
+PREFIX oregano: <http://erias.fr/oregano/#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema/#>
+SELECT DISTINCT ?subject ?predicate ?gene
+
+WHERE {
+  ?disease rdfs:label "pgkb:alzheimer disease".
+  ?gene oregano:causes_condition ?disease.
+  ?subject ?predicate ?gene.
+}
+
+
+QUERY 5: Links of phenotypes of Alzheimer's disease
+
+PREFIX oregano: <http://erias.fr/oregano/#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema/#>
+SELECT DISTINCT ?phenotype
+
+WHERE {
+  ?disease rdfs:label "pgkb:alzheimer disease".
+  ?disease oregano:has_phenotype ?phenotype.
+  ?phenotype
+}
+
+
+
